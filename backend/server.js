@@ -11,6 +11,7 @@ import dotenv from 'dotenv';
 // Custom Modules
 // Error Handler Module
 import errorHandler from './controllers/errorController.js';
+import userRoutes from './routes/userRoutes.js';
 
 // dbConnection Module
 import connectDB from './config/db.js';
@@ -27,6 +28,10 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// API routes
+
+app.use('/api/users', userRoutes);
+
 // Connection ENV
 const __dirname = path.resolve();
 if (process.env.NODE_ENV === 'production') {
@@ -39,6 +44,7 @@ if (process.env.NODE_ENV === 'production') {
     res.send('API is running...');
   });
 }
+
 // Connection Response
 /* 
 PORT Variable should be inside the .env file

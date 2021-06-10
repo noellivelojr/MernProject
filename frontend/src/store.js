@@ -11,7 +11,7 @@ import {
   userUpdateReducer,
 } from './reducers/userReducers';
 
-const reducers = combineReducers({
+const reducer = combineReducers({
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,
   userDetails: userDetailsReducer,
