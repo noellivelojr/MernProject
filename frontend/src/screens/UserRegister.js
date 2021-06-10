@@ -3,29 +3,31 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Form, Button } from 'react-bootstrap';
 import { register } from '../actions/userActions';
 import { USER_REGISTER_RESET } from '../constants/userConstants';
-const UserRegister = ({ history }) => {
+import Message from '../components/Message';
+import Loader from '../components/Loader';
+const UserRegister = ({ location, history }) => {
+  const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const dispatch = useDispatch();
+  const [message, setMessage] = useState(null);
 
   const userRegister = useSelector((state) => state.userRegister);
-  const { success } = userRegister;
+  const { loading, error, success, userInfo } = userRegister;
 
-  const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
+  const redirect = location.search
+    ? location.search.split('=')[1]
+    : '/user/profile';
 
   useEffect(() => {
-    if (!userInfo || !userInfo.role === 'admin') {
-      history.push('/user/login');
-    }
-    if (success) {
-      history.push('/admin/user/list');
+    if (userInfo) {
+      history.push(redirect);
       dispatch({ type: USER_REGISTER_RESET });
     }
   }, [dispatch, history, success, userInfo]);
+
   const submitHandler = (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
@@ -34,8 +36,14 @@ const UserRegister = ({ history }) => {
       dispatch(register(email, name, username, password));
     }
   };
+
   return (
     <Form onSubmit={submitHandler}>
+      {message ? (
+        <Message variant='outline-warning text-danger'>{message}</Message>
+      ) : (
+        loading && <Loader />
+      )}
       <Form.Group controlId='email'>
         <Form.Label>Email</Form.Label>
         <Form.Control

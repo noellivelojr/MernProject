@@ -1,7 +1,8 @@
-import React from 'react';
-import { Form, Button } from 'react-bootstrap';
+import React, { useState, useEffect } from 'react';
+import { Form, Button, Container } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../actions/userActions';
+import Loader from '../components/Loader';
 
 const UserLogin = ({ location, history }) => {
   const [username, setUsername] = useState('');
@@ -26,7 +27,7 @@ const UserLogin = ({ location, history }) => {
     dispatch(login(username, password));
   };
   return (
-    <FormContainer>
+    <Container>
       <Form onSubmit={submitHandler} className='my-1 '>
         <Form.Group controlId='username'>
           <Form.Label>Username</Form.Label>
@@ -52,7 +53,7 @@ const UserLogin = ({ location, history }) => {
           {loading ? <Loader /> : <span>Login</span>}
         </Button>
       </Form>
-    </FormContainer>
+    </Container>
   );
 };
 

@@ -70,13 +70,9 @@ export const register =
       dispatch({
         type: USER_REGISTER_REQUEST,
       });
-      const {
-        userLogin: { userInfo },
-      } = getState();
       const config = {
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${userInfo.token}`,
         },
       };
       const { data } = await axios.post(
@@ -94,6 +90,13 @@ export const register =
         type: USER_REGISTER_SUCCESS,
         payload: data,
       });
+
+      dispatch({
+        type: USER_LOGIN_SUCCESS,
+        payload: data,
+      });
+
+      localStorage.setItem('userInfo', JSON.stringify(data));
     } catch (error) {
       dispatch({
         type: USER_REGISTER_FAIL,
