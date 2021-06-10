@@ -7,7 +7,7 @@
 6. include this variables
    1. NODE_ENV = production
    2. PORT = 5000
-   3. CLOUD_DB_URI = mongodb+srv://cryx25:enovation25@cluster0.mdjfo.azure.mongodb.net/myDB?retryWrites=true&w=majority
+   3. CLOUD_DB_URI = 
    4. JWT_SECRET = secretcode
    5. JWT_EXPIRES_IN = 60d
    6. JWT_COOKIE_EXPIRES_IN = 60d
