@@ -67,7 +67,7 @@ const Header = () => {
               )}
               {userInfo && userInfo.role === 'client' && (
                 <NavDropdown title={userInfo.role + 'Panel'} id='clientmenu'>
-                  <LinkContainer to='/client/profile'>
+                  <LinkContainer to='/profile'>
                     <NavDropdown.Item>Something</NavDropdown.Item>
                   </LinkContainer>
                 </NavDropdown>

@@ -21,6 +21,8 @@ const App = () => {
           <Route path='/register' component={UserRegister} />
           <Route path='/login' component={UserLogin} />
           <Route path='/user/profile' component={UserProfile} />
+          <Route path='/admin/user/:id/edit' component={UserEdit} />
+          <Route path='/admin/user/list' component={UserList} />
         </Container>
       </main>
     </Router>

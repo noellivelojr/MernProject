@@ -20,7 +20,7 @@ const UserEdit = ({ match, history }) => {
 
   useEffect(() => {
     if (!userInfo || !userInfo.role === 'admin') {
-      history.push('/user/login');
+      history.push('/login');
     }
     if (successUpdate) {
       dispatch({ type: USER_UPDATE_RESET });
